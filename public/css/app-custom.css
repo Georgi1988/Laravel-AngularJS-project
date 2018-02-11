@@ -1,0 +1,129 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-family: 'Applied Font Regular', 'Applied Font';
+	color:#333333;
+}
+
+body {
+    font-size: 16px;
+}
+
+a:hover, a:link, a:visited, a:link:active, a:visited:active {
+    cursor:pointer;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #23527c;
+}
+
+a:hover .glyphicon {
+    color: #23527c;
+}
+
+/* .h1, .h2, .h3, h1, h2, h3 {margin: 0;} */
+
+ul, li {
+    list-style-type:none;
+}
+
+li {
+    display:inline-block; 
+    vertical-align:top; 
+    border-bottom: 2px solid #e7e8ea;
+}
+
+ol, ul {
+    margin-bottom: 0
+}
+
+img {
+    border-radius: 2px;
+}
+
+.app-container {
+    min-height: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.conter-wrapper {
+    min-height: 600px;
+    padding: 15px;
+}
+
+.stat .icon-col {
+    text-align: center;
+    height: 100px;
+    padding: 25px 0;
+    color: #FFF;
+}
+
+.periodselected, .productbtnselected, .orderbtnselected {
+    background-color:#29a7e1;
+    color:white;
+}
+
+.dateselector {
+    width:160px; 
+    float:left;
+}
+
+.nav-tab-menu {
+    padding:0 17px;
+    text-align: center; 
+    display: inline-flex
+}
+
+.product_upload_logo {
+    bottom: 0; 
+    overflow: hidden; 
+    padding-top: 5px; 
+    text-align: center; 
+    background-color: #2d647d; 
+    color: white; 
+    font-weight: bold; 
+    opacity: 0.8;
+}
+
+.product_upload_logo label {
+    display: inline-block; 
+    color: white; 
+    height: 20px !important;
+}
+
+.product_upload_logo input[type="file"] {
+    position: absolute; 
+    left: 50%; 
+    width: 1px; 
+    height: 1px; 
+    top: -30px;
+}
+
+.pageinfo {
+    color:#29a7e1;
+    display:inline-block;
+    padding-right:50px;
+    margin-top:5px;
+    vertical-align:top
+}
+
+.float-left { float:left; }
+.float-right { float:right; }
+
+.padding0 { padding:0px }
+
+.inline-block { display: inline-block; }
+
+.searchlayout { width:168px; margin-right: 13px; font-size: 12px; display:inline-flex; }
+.searchlayout select { width:168px; height:30px; padding:0px 10px; border-radius: 3px; }
+.searchlayout input[type="text"], .searchlayout input[type="number"], .searchlayout input[type="search"] { width: 140px; height:30px; border:1px solid #cccccc;padding:0px 10px; border-radius: 3px;}
+.searchlayout .width200p { width:200px }
+.searchlayout .width80p { width:80px }
+.searchlayout .widthauto { width:auto }
+.searchlayout .bgcolor1 { background-color:#FF0000; }
+.searchlayout .ui-datepicker-trigger, .date { height:30px; vertical-align:top; padding-left:3px; display:inline-block;}
+.searchlayout .searchsubmit { width:80px; height:30px; background-color:#29a7e1; color:white; }
+
+.leftmargin5 { margin-left: 5px; }

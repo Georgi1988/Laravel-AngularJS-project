@@ -1,0 +1,188 @@
+dingdingApp.controller('MainController', function($scope, $route, $routeParams, $location) {
+	$scope.$route = $route;
+	$scope.$location = $location;
+	$scope.$routeParams = $routeParams;
+});
+
+dingdingApp.controller('startController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'start';
+	//alert("ok");
+});
+
+dingdingApp.controller('overviewController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'overview';
+	//alert("ok");
+});
+
+dingdingApp.controller('productController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'product';
+});
+
+dingdingApp.controller('priceController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'price';
+});
+
+dingdingApp.controller('stockController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'stock';
+});
+
+dingdingApp.controller('purchaseController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'purchase';
+});
+
+dingdingApp.controller('orderController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'order';
+});
+
+dingdingApp.controller('salesController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'sales';
+});
+
+dingdingApp.controller('rewardController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'reward';
+});
+
+dingdingApp.controller('userController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'user';
+});
+
+dingdingApp.controller('logController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'log';
+});
+
+dingdingApp.controller('settingController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'setting';
+});
+
+dingdingApp.controller('messageController', function($scope, $rootScope, $route, $routeParams) {
+	$rootScope.route_status = 'message';
+});
+
+/* dingdingApp.controller('productController', function($scope, $rootScope, $route, $routeParams, productStorage) {
+	$rootScope.route_status = 'product';
+	
+	productStorage.get().then(function(data){
+		console.log(data);
+		$scope.products = data;
+		$("#browser").treeview();
+		
+	
+		$(".editev").each(function(index, domEle){
+			$(domEle).click(function(){
+				var foloderVal = $(domEle).parent().prev().attr("val");
+				var idVal = $(domEle).parent().prev().attr("idval");//alert(idVal);
+				var htmlStr = '<input type="text" name="editinput" class="editinput" id="editinput'+idVal+'" value="'+ foloderVal +'" onblur="update('+ idVal +')" />';
+				$(domEle).parent().prev().html(htmlStr);
+			});
+		});
+		$(".deletev").each(function(index, domEle){
+			$(domEle).click(function(){
+				$(domEle).parent().prev().parent().remove();
+				var idVal = $(domEle).parent().prev().attr("idval");
+				$.ajax({
+					type: 'DELETE',
+					url: '/product/'+idVal,
+					success: function() {
+						window.location.href = "#!/product";
+					},
+					statusCode: {
+						404: function() {
+							window.location.href = "#!/product";
+						}
+					}
+				});
+			});
+		});
+		
+		proInfoDlg = $( "#product-info" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			height: "auto",
+			width: 740,
+			modal: true,
+		});
+		$( ".proudctinfo" ).click( function() {
+			proInfoDlg.dialog( "open" );
+		});
+	});
+		
+}); */
+
+/* dingdingApp.controller('orderController', function($scope, $rootScope, orderData, PagerService, $route, $window, $location, $routeParams) {
+	$rootScope.route_status = 'order';
+	if(typeof $routeParams.type == "undefined"){
+		$scope.page_type = '0';
+	}else{
+		$scope.page_type = $routeParams.type;
+	}
+	
+	// Array of search value
+	$scope.search = {product_id: '0', dealer: '0', st_date: '', end_date: ''};
+	// Array of new order default value
+	$scope.neworder = {type: "0", product_id: "0", order_count: 1}
+	$scope.pagenum  = 1;
+	
+	function get_page_list(type, pagenum, search){
+		var reqire_products_list = (typeof $scope.list_product == "undefined")? 1: 0;
+		orderData.page_list(type, pagenum, search, reqire_products_list).then(function(data){
+			$scope.list_data = data.list;
+			if(reqire_products_list == 1) $scope.list_product = data.products;
+			$scope.pagenation = PagerService.GetPager($scope.list_data.total, $scope.list_data.current_page, $scope.list_data.per_page, 5);
+		});
+	}
+	
+	get_page_list($scope.page_type, $scope.pagenum, JSON.stringify($scope.search));
+	
+	$scope.setPage = function(pagenum){
+		if(pagenum < 1) pagenum = 1;
+		else if(pagenum > $scope.list_data.last_page) pagenum = $scope.list_data.last_page;
+		get_page_list($scope.page_type, pagenum, JSON.stringify($scope.search));
+		//$location.path('/order/' + pagenum);
+	}
+	
+	$scope.search_page = function(){
+		get_page_list($scope.page_type, 1, JSON.stringify($scope.search));
+	}
+	
+	$scope.dialog_new_order = function(){
+		$scope.orderNewDlg = $( "#order-new" ).dialog({
+			autoOpen: true,
+			resizable: false,
+			height: "auto",
+			width: 740,
+			modal: true,
+		});
+	}
+	$scope.save_new_order = function(){
+		orderData.save_order($scope.neworder).then(function(data){
+			if(data.status == true){
+				location.reload();
+			}
+			else{
+				alert("Registration Failed, Try again!");
+			}
+		});
+	}
+	
+	$scope.view_meta = {
+		'1': {class: 'fontcolor1', label: '进货', symbol: '-'},
+		'2': {class: 'fontcolor2', label: '出货', symbol: '+'},
+		'3': {class: 'fontcolor3', label: '退换', symbol: ''},
+	};
+	
+	$scope.view_class_color = function(kind, status){
+		if(kind == "Return") return 'fontcolor3';
+		else if(status == 'Act') return 'fontcolor1';
+		else return 'fontcolor2';
+	}
+	
+	$scope.view_kind = function(kind, status){
+		if(kind == "Return") return '3';
+		else if(status == 'Act') return '1';
+		else return '2';
+	}
+	
+	$scope.view_price = function(item){
+		return item.order_price * item.order_quantity;
+	}
+}); */
